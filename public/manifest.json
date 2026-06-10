@@ -1,0 +1,16 @@
+{
+  "name": "LUXEES Premium Fashion",
+  "short_name": "LUXEES",
+  "description": "Discover timeless pieces that define modern elegance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#c8941e",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

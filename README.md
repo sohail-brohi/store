@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Luxee Store
+
+A premium fashion e-commerce platform built with Next.js, Tailwind CSS, Firebase, and MongoDB — inspired by [Luxee Store](https://luxee-store.vercel.app/).
+
+## Features
+
+### Storefront
+- Hero landing page with featured collections
+- Product catalog with filtering, sorting, and search
+- Category pages (Men, Women, Accessories, Shoes, Kids)
+- New Arrivals & Sale pages
+- Product detail pages with size/color selection
+- Shopping cart & checkout (COD + Card)
+- Wishlist
+- User authentication (Firebase Auth)
+- Order history
+- Blog with articles
+- FAQ, About, Contact, Careers
+- Shipping, Returns, Size Guide, Privacy, Terms
+- Dark/Light theme toggle
+- Fully responsive design
+
+### Admin Dashboard
+- Dashboard with revenue & order stats
+- Product management
+- Order management with status updates
+- Review moderation
+- Contact messages
+- Discount codes
+- Blog, FAQ, Jobs management
+- User list
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS 4
+- **Database:** MongoDB with Mongoose
+- **Auth:** Firebase Authentication
+- **Language:** TypeScript
+- **Icons:** Lucide React
+- **Notifications:** React Hot Toast
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- MongoDB (local or [MongoDB Atlas](https://www.mongodb.com/atlas))
+- Firebase project ([Firebase Console](https://console.firebase.google.com))
+
+### Setup
+
+1. **Clone and install dependencies:**
+
+```bash
+npm install
+```
+
+2. **Configure environment variables:**
+
+```bash
+cp .env.example .env.local
+```
+
+Fill in your MongoDB URI and Firebase credentials in `.env.local`.
+
+3. **Start MongoDB** (if running locally):
+
+```bash
+mongod
+```
+
+4. **Seed the database:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Then in another terminal:
+curl -X POST http://localhost:3000/api/seed
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. **Open the app:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Storefront: [http://localhost:3000](http://localhost:3000)
+- Admin: [http://localhost:3000/admin](http://localhost:3000/admin)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Firebase Setup
 
-## Learn More
+1. Create a project at [Firebase Console](https://console.firebase.google.com)
+2. Enable **Email/Password** authentication under Authentication > Sign-in method
+3. Copy web app config to `NEXT_PUBLIC_FIREBASE_*` env vars
+4. Generate a service account key (Project Settings > Service Accounts) for admin SDK
 
-To learn more about Next.js, take a look at the following resources:
+## MongoDB Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Local:**
+```
+MONGODB_URI=mongodb://localhost:27017/luxee-store
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Atlas:**
+1. Create a free cluster at [mongodb.com/atlas](https://www.mongodb.com/atlas)
+2. Get connection string and set `MONGODB_URI`
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run dev      # Start development server
+npm run build    # Production build
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── (store)/          # Storefront pages
+│   ├── admin/            # Admin dashboard
+│   └── api/              # API routes
+├── components/
+│   ├── layout/           # Header, Footer
+│   ├── products/         # Product components
+│   └── ui/               # UI primitives
+├── contexts/             # React contexts (Cart, Auth, etc.)
+├── lib/                  # Utilities, DB, Firebase
+├── models/               # Mongoose models
+└── types/                # TypeScript types
+```
+
+## Deployment
+
+Deploy to [Vercel](https://vercel.com):
+
+1. Push to GitHub
+2. Import project on Vercel
+3. Add all environment variables from `.env.example`
+4. Deploy
+
+After deployment, seed the database:
+```bash
+curl -X POST https://your-app.vercel.app/api/seed
+```
+
+## License
+
+MIT
